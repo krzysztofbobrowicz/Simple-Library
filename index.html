@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript Library</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>My Virtual Library</h1>
+      <form id="form">
+        <div class="form-tile">
+          <label for="title">title</label>
+          <input type="text" value="" id="title" required />
+        </div>
+
+        <div class="form-tile">
+          <label for="author">author</label>
+          <input type="text" value="" id="author" required />
+        </div>
+
+        <div class="form-tile">
+          <label for="Finished">finished</label>
+          <select name="finished" id="finished">
+            <option value="Finished">Finished</option>
+            <option value="Not finished">Not finished</option>
+          </select>
+        </div>
+      </form>
+      <div>
+        <input type="submit" value="submit" class="button-submit" form="form" />
+      </div>
+
+      
+        <div id="books-container">
+
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
