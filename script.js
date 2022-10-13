@@ -68,11 +68,24 @@ function loopThroughBooks() {
     div.innerHTML = `  
   <p class='title'>${objects.title}</p> 
   <p>${objects.author}</p> 
-  <button class="${isBookFinished()}">${objects.finished}</=$>
+  <button class="${isBookFinished()} finished-button">${objects.finished}</=$>
   <button class="book-remove">Remove</button>
   `;
     div.classList = 'card';
   }
+
+  const finishedButton = document.querySelectorAll('.finished-button');
+  finishedButton.forEach(button => {
+    button.addEventListener('click', e => {
+      console.log(e.target.innerText);
+      console.log(e);
+      if (e.target.innerText === 'Not finished') {
+        e.target.innerText = 'Finished';
+      } else {
+        e.target.innerText = 'Not finished';
+      }
+    });
+  });
 
   const removeButton = document.querySelectorAll('.book-remove');
   removeButton.forEach(button => {
@@ -81,7 +94,6 @@ function loopThroughBooks() {
         num => num.id === parseInt(button.parentNode.id)
       );
       myLibrary.splice(index, 1);
-
       loopThroughBooks();
     });
   });
