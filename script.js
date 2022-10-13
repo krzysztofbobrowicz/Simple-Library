@@ -49,6 +49,14 @@ function loopThroughBooks() {
   const booksContainer = document.querySelector('#books-container');
   booksContainer.innerHTML = '';
 
+  function isBookFinished() {
+    if (myLibrary.length > 0) {
+      const lastFinished = myLibrary[myLibrary.length - 1].finished;
+      if (lastFinished === 'Finished') {
+        return 'finished';
+      } else return '';
+    }
+  }
   for (let i = 0; i < myLibrary.length; i++) {
     const newBook = document.createElement('div');
     newBook.className = 'book-card';
@@ -60,12 +68,12 @@ function loopThroughBooks() {
     div.innerHTML = `  
   <p class='title'>${objects.title}</p> 
   <p>${objects.author}</p> 
-  <p id=${i}>${objects.finished}</p>
+  <button class="${isBookFinished()}">${objects.finished}</=$>
   <button class="book-remove">Remove</button>
   `;
-
     div.classList = 'card';
   }
+
   const removeButton = document.querySelectorAll('.book-remove');
   removeButton.forEach(button => {
     button.addEventListener('click', () => {
