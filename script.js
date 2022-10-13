@@ -31,13 +31,14 @@ const submitNewBook = form.addEventListener('submit', event => {
   let title = document.querySelector('#title');
   let author = document.querySelector('#author');
   let finished = document.querySelector('#finished');
+
   const newBook = new Book(
     title.value,
     author.value,
     finished.value,
     myLibrary.length
-    // TU WRÓĆ JUTRO
   );
+
   newBook.addBookToLibrary();
   title.value = '';
   author.value = '';
@@ -57,22 +58,29 @@ function loopThroughBooks() {
     newBook.appendChild(div);
     const objects = myLibrary[i];
     div.setAttribute('id', myLibrary[i].id);
-    div.innerHTML = `  
+
+    div.innerHTML = `
+    <div class="author">  
   <p class='title'>${objects.title}</p> 
   <p>${objects.author}</p> 
-  <button class="finished-button">${objects.finished}</=$>
-  <button class="book-remove">Remove</button>
+
+  </div>
+
+  <div class="buttons" id="${i}">
+  <button  class="finished-button">${objects.finished}</=$>
+  <button class="book-remove remove-button">Remove</button>
+  </div>
   `;
     div.classList = 'card';
   }
 
   const finishedButton = document.querySelectorAll('.finished-button');
+
   finishedButton.forEach(button => {
     button.addEventListener('click', e => {
       const index = myLibrary.findIndex(
         num => num.id === parseInt(button.parentNode.id)
       );
-
       if (myLibrary[index].finished === 'Not finished') {
         e.target.innerText = 'Finished';
         myLibrary[index].finished = 'Finished';
@@ -86,6 +94,7 @@ function loopThroughBooks() {
   const removeButton = document.querySelectorAll('.book-remove');
   removeButton.forEach(button => {
     button.addEventListener('click', () => {
+      console.log(button.parentNode.id);
       const index = myLibrary.findIndex(
         num => num.id === parseInt(button.parentNode.id)
       );
