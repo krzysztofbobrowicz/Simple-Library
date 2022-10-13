@@ -49,14 +49,6 @@ function loopThroughBooks() {
   const booksContainer = document.querySelector('#books-container');
   booksContainer.innerHTML = '';
 
-  function isBookFinished() {
-    if (myLibrary.length > 0) {
-      const lastFinished = myLibrary[myLibrary.length - 1].finished;
-      if (lastFinished === 'Finished') {
-        return 'finished';
-      } else return '';
-    }
-  }
   for (let i = 0; i < myLibrary.length; i++) {
     const newBook = document.createElement('div');
     newBook.className = 'book-card';
@@ -68,7 +60,7 @@ function loopThroughBooks() {
     div.innerHTML = `  
   <p class='title'>${objects.title}</p> 
   <p>${objects.author}</p> 
-  <button class="${isBookFinished()} finished-button">${objects.finished}</=$>
+  <button class="finished-button">${objects.finished}</=$>
   <button class="book-remove">Remove</button>
   `;
     div.classList = 'card';
@@ -77,12 +69,16 @@ function loopThroughBooks() {
   const finishedButton = document.querySelectorAll('.finished-button');
   finishedButton.forEach(button => {
     button.addEventListener('click', e => {
-      console.log(e.target.innerText);
-      console.log(e);
-      if (e.target.innerText === 'Not finished') {
+      const index = myLibrary.findIndex(
+        num => num.id === parseInt(button.parentNode.id)
+      );
+
+      if (myLibrary[index].finished === 'Not finished') {
         e.target.innerText = 'Finished';
+        myLibrary[index].finished = 'Finished';
       } else {
         e.target.innerText = 'Not finished';
+        myLibrary[index].finished = 'Not finished';
       }
     });
   });
