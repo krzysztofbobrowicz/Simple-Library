@@ -31,6 +31,7 @@ const submitNewBook = form.addEventListener('submit', event => {
   let title = document.querySelector('#title');
   let author = document.querySelector('#author');
   let finished = document.querySelector('#finished');
+  console.log(event);
 
   const newBook = new Book(
     title.value,
@@ -61,14 +62,23 @@ function loopThroughBooks() {
 
     div.innerHTML = `
     <div class="author">  
-  <p class='title'>${objects.title}</p> 
-  <p>${objects.author}</p> 
+  
+    ${objects.author}
+   
+    </div>
+  <div class='title'>
+ 
+  ${objects.title}
 
-  </div>
+  </div> 
+  
+
+
+ 
 
   <div class="buttons" id="${i}">
   <button  class="finished-button">${objects.finished}</=$>
-  <button class="book-remove remove-button">Remove</button>
+  <button class="book-remove remove-button">Remove Book</button>
   </div>
   `;
     div.classList = 'card';
@@ -94,16 +104,15 @@ function loopThroughBooks() {
   const removeButton = document.querySelectorAll('.book-remove');
   removeButton.forEach(button => {
     button.addEventListener('click', () => {
-      console.log(button.parentNode.id);
       const index = myLibrary.findIndex(
-        num => num.id === parseInt(button.parentNode.id)
+        title =>
+          title.title ===
+          button.parentNode.parentNode.querySelector('.title').innerText
       );
+      console.log(index);
       myLibrary.splice(index, 1);
       loopThroughBooks();
     });
   });
 }
-
-function createCard() {}
-
 loopThroughBooks();
