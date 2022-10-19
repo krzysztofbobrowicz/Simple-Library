@@ -16,10 +16,6 @@ body {
   letter-spacing: 0.8px;
 }
 
-input,
-select {
-}
-
 select {
   text-align: center;
 }
@@ -49,10 +45,6 @@ body {
   font-family: 'Raleway', sans-serif;
   box-sizing: border-box;
   background-color: #0a0a23;
-}
-
-label {
-  color: #fff;
 }
 
 .card {
@@ -93,7 +85,6 @@ form > div {
 
 h1 {
   margin-top: 6rem;
-  color: #fff;
 }
 
 .button-submit {
@@ -108,7 +99,6 @@ h1 {
   min-width: 120px;
   cursor: pointer;
   letter-spacing: 1.2px;
-  /* text-transform: uppercase; */
   font-weight: 600;
 }
 .card-element {
@@ -117,7 +107,7 @@ h1 {
   background-color: aquamarine;
 }
 
-p.title {
+.title {
   font-weight: bold;
   justify-content: center;
   align-items: center;
@@ -141,7 +131,6 @@ button.remove-button {
 }
 
 .title {
-  /* margin: 25px 0; */
   font-size: 1.5rem;
   padding: 1rem 1rem;
 }
@@ -149,10 +138,6 @@ button.remove-button {
 .author {
   font-size: 1.5rem;
   padding-bottom: 5px;
-}
-
-.author {
-  color: #fff;
 }
 
 .buttons {
@@ -163,7 +148,9 @@ button.finished-button {
   margin-bottom: 25px;
   color: #fff;
 }
-
-button.remove-button {
+.author,
+button.remove-button,
+h1,
+label {
   color: #fff;
 }

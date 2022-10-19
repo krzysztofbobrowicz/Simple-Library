@@ -49,8 +49,8 @@ const submitNewBook = form.addEventListener('submit', event => {
 
 function loopThroughBooks() {
   const booksContainer = document.querySelector('#books-container');
-  booksContainer.innerHTML = '';
 
+  booksContainer.innerHTML = '';
   for (let i = 0; i < myLibrary.length; i++) {
     const newBook = document.createElement('div');
     newBook.className = 'book-card';
@@ -62,21 +62,14 @@ function loopThroughBooks() {
 
     div.innerHTML = `
     <div class="author">  
-  
     ${objects.author}
-   
     </div>
-  <div class='title'>
- 
+
+  <div class='title'> 
   ${objects.title}
-
-  </div> 
-  
-
-
- 
-
-  <div class="buttons" id="${i}">
+  </div>
+   
+    <div class="buttons" id="${i}">
   <button  class="finished-button">${objects.finished}</=$>
   <button class="book-remove remove-button">Remove Book</button>
   </div>
@@ -84,35 +77,41 @@ function loopThroughBooks() {
     div.classList = 'card';
   }
 
-  const finishedButton = document.querySelectorAll('.finished-button');
-
-  finishedButton.forEach(button => {
-    button.addEventListener('click', e => {
-      const index = myLibrary.findIndex(
-        num => num.id === parseInt(button.parentNode.id)
-      );
-      if (myLibrary[index].finished === 'Not finished') {
-        e.target.innerText = 'Finished';
-        myLibrary[index].finished = 'Finished';
-      } else {
-        e.target.innerText = 'Not finished';
-        myLibrary[index].finished = 'Not finished';
-      }
+  function toggleFinish() {
+    const finishedButton = document.querySelectorAll('.finished-button');
+    finishedButton.forEach(button => {
+      button.addEventListener('click', e => {
+        const index = myLibrary.findIndex(
+          num => num.id === parseInt(button.parentNode.id)
+        );
+        if (myLibrary[index].finished === 'Not finished') {
+          e.target.innerText = 'Finished';
+          myLibrary[index].finished = 'Finished';
+        } else {
+          e.target.innerText = 'Not finished';
+          myLibrary[index].finished = 'Not finished';
+        }
+      });
     });
-  });
+  }
 
-  const removeButton = document.querySelectorAll('.book-remove');
-  removeButton.forEach(button => {
-    button.addEventListener('click', () => {
-      const index = myLibrary.findIndex(
-        title =>
-          title.title ===
-          button.parentNode.parentNode.querySelector('.title').innerText
-      );
-      console.log(index);
-      myLibrary.splice(index, 1);
-      loopThroughBooks();
+  function removeBook() {
+    const removeButton = document.querySelectorAll('.book-remove');
+    removeButton.forEach(button => {
+      button.addEventListener('click', () => {
+        const index = myLibrary.findIndex(
+          title =>
+            title.title ===
+            button.parentNode.parentNode.querySelector('.title').innerText
+        );
+        console.log(index);
+        myLibrary.splice(index, 1);
+        loopThroughBooks();
+      });
     });
-  });
+  }
+  removeBook();
+  toggleFinish();
 }
+
 loopThroughBooks();
